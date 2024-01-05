@@ -67,6 +67,7 @@ public class ClientScript : MonoBehaviour
             client = new TcpClient(serverIP, serverPort);
             stream = client.GetStream();
             Debug.Log($"{userName} : Connected to server.");
+            
             StartCoroutine(ReceiveChat());
             clientReceiveThread = new Thread(new ThreadStart(ListenForData));
             clientReceiveThread.IsBackground = true;
