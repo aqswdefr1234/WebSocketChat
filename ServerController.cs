@@ -8,8 +8,8 @@ using Debug = UnityEngine.Debug;
 using System.Collections.Generic;
 public class ServerController : MonoBehaviour
 {
-    private string ipAdress = "172.30.1.79";
-    private int port = 7777;
+    private string ipAdress = "";
+    private int port = 0;
 
     private TcpListener server = null;
     private Thread thread;
