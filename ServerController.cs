@@ -8,8 +8,8 @@ using Debug = UnityEngine.Debug;
 using System.Collections.Generic;
 public class ServerController : MonoBehaviour
 {
-    public string ipAdress = "";
-    public int port = 0;
+    private string ipAdress = "172.30.1.79";
+    private int port = 7777;
 
     private TcpListener server = null;
     private Thread thread;
@@ -19,6 +19,9 @@ public class ServerController : MonoBehaviour
     
     private void Start()
     {
+        ipAdress = UIActivation.ip;
+        port = UIActivation.port;
+
         clientThread = new List<Thread>();
         clientList = new List<TcpClient>();
         streams = new List<NetworkStream>();

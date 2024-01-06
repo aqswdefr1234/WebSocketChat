@@ -29,17 +29,19 @@ public class ClientScript : MonoBehaviour
         }
     }
     //Set Server
-    public string serverIP = ""; // Set this to your server's IP address.
-    public int serverPort = 0;             // Set this to your server's port.
+    public string serverIP = "172.30.1.98"; // Set this to your server's IP address.
+    public int serverPort = 7777;             // Set this to your server's port.
     private TcpClient client;
     private NetworkStream stream;
     private Thread clientReceiveThread;
 
     void Awake()
     {
-        if(instance == null)
+        if (instance == null)
             instance = this;
 
+        serverIP = UIActivation.ip;
+        serverPort = UIActivation.port;
     }
     IEnumerator ReceiveChat()
     {
@@ -67,7 +69,6 @@ public class ClientScript : MonoBehaviour
             client = new TcpClient(serverIP, serverPort);
             stream = client.GetStream();
             Debug.Log($"{userName} : Connected to server.");
-            
             StartCoroutine(ReceiveChat());
             clientReceiveThread = new Thread(new ThreadStart(ListenForData));
             clientReceiveThread.IsBackground = true;
